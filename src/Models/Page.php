@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
+use Spatie\Translatable\HasTranslations;
 use Z3d0X\FilamentFabricator\Models\Contracts\Page as Contract;
 
 class Page extends Model implements Contract
 {
+    use HasTranslations;
+
+    public array $translatable = [
+        'title',
+        'blocks',
+    ];
+
     public function __construct(array $attributes = [])
     {
         if (blank($this->table)) {
